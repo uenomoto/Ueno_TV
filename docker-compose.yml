@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mysql:
     build: .
-    image: net_tv_mysql
+    image: ueno_tv_mysql
     env_file: .env
     ports:
       - "3306:3306"
