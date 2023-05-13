@@ -1,11 +1,18 @@
 version: '3.8'
 
 services:
-  mysql:
-    build: .
-    image: ueno_tv_mysql
+  db:
+    image: mysql
     env_file: .env
+    environment:
+      - LANG=ja_JP.utf8
+      - LANGUAGE=ja_JP:jp
+      - LC_ALL=ja_JP.utf8
     ports:
       - "3306:3306"
     volumes:
-      - ./data:/docker-entrypoint-initdb.d/
+      - ./data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+      - ./mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+    tty: true
+    stdin_open: true
